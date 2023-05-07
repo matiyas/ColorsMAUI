@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoloryMAUI", "KolotyMAUI\KoloryMAUI.csproj", "{4644AA26-0DAE-483C-8892-820E36F32425}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoloryMAUI", "KoloryMAUI\KoloryMAUI.csproj", "{4644AA26-0DAE-483C-8892-820E36F32425}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

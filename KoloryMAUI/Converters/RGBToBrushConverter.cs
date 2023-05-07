@@ -1,0 +1,22 @@
+﻿using System.Globalization;
+
+namespace ColoryMAUI.Converters;
+
+class RGBToBrushConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (values.Contains(null)) return Brush.Black;
+
+        var r = (double)values[0];
+        var g = (double)values[1];
+        var b = (double)values[2];
+
+        return new SolidColorBrush(Color.FromRgb(r, g, b));
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
