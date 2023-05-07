@@ -1,4 +1,4 @@
-﻿using System.Xml;
+﻿using KoloryMAUI.Models;
 
 namespace KoloryMAUI;
 
@@ -14,13 +14,13 @@ public partial class MainPage : ContentPage
 
     private void ReadSettings ()
     {
-        var (r, g, b) = KoloryMAUI.Settings.Read();
+        var kolor = Settings.Read();
 
         _updateUI = false;
-        sliderR.Value = r;
-        sliderG.Value = g;
+        sliderR.Value = kolor.R;
+        sliderG.Value = kolor.G;
         _updateUI = true;
-        sliderB.Value = b;
+        sliderB.Value = kolor.B;
     }
 
     private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -51,11 +51,13 @@ public partial class MainPage : ContentPage
 
     private void ContentPage_Disappearing(object sender, EventArgs e)
     {
-        KoloryMAUI.Settings.Save(
+        var kolor = new Kolor(
             sliderR.Value, 
             sliderG.Value, 
             sliderB.Value
         );
+
+        Settings.Save(kolor);
     }
 }
 

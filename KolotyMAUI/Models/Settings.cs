@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Xml.Linq;
 
-namespace KoloryMAUI;
+namespace KoloryMAUI.Models;
 
-class Settings
+static class Settings
 {
     private static readonly string _filePath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
@@ -11,23 +11,23 @@ class Settings
     );
     private static readonly IFormatProvider _formatProvider = CultureInfo.InvariantCulture;
 
-    public static void Save (double r, double g, double b)
+    public static void Save(this Kolor kolor)
     {
 
         XDocument xml = new(
             new XComment($"Saved: {DateTime.Now}"),
             new XElement("settings",
-                new XElement("r", r.ToString(_formatProvider)),
-                new XElement("g", g.ToString(_formatProvider)),
-                new XElement("b", b.ToString(_formatProvider))
+                new XElement("r", kolor.R.ToString(_formatProvider)),
+                new XElement("g", kolor.G.ToString(_formatProvider)),
+                new XElement("b", kolor.B.ToString(_formatProvider))
             )
         );
         xml.Save(_filePath);
     }
 
-    public static (double r, double g, double b) Read ()
+    public static Kolor Read()
     {
-        var defaultValue = (0, 0, 0);
+        var defaultValue = Kolor.Czarny;
 
         if (!File.Exists(_filePath)) return defaultValue;
 
@@ -39,7 +39,7 @@ class Settings
             double g = double.Parse(xml.Root.Element("g").Value, _formatProvider);
             double b = double.Parse(xml.Root.Element("b").Value, _formatProvider);
 
-            return (r, g, b);
+            return new Kolor(r, g, b);
         }
         catch
         {
