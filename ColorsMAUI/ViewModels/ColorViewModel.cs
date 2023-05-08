@@ -1,5 +1,6 @@
 ﻿using ColorsMAUI.Models;
 using System.Diagnostics;
+using System.Windows.Input;
 using Color = ColorsMAUI.Models.Color;
 
 namespace ColorsMAUI.ViewModels;
@@ -38,4 +39,17 @@ internal class ColorViewModel : ObservedObject
         }
     }
     #endregion Properties
+
+    #region Commands
+    private ICommand _reset;
+
+    public ICommand Reset
+    {
+        get
+        {
+            if (_reset == null) _reset = new ResetCommand(this);
+            return _reset;
+        }
+    }
+    #endregion Commands
 }

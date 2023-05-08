@@ -76,6 +76,11 @@
                FontSize="35" 
                Text="{Binding B, Mode=OneWay, Converter={StaticResource d2bs}}"/>
 
+        <Button Text="Reset"
+                WidthRequest="200"
+                Grid.Row="4"
+                HorizontalOptions="Start"
+                Command="{Binding Reset}"/>
     </Grid>
 
 </ContentPage>
