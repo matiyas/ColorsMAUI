@@ -42,14 +42,41 @@ internal class ColorViewModel : ObservedObject
 
     #region Commands
     private ICommand _reset;
+    private ICommand _save;
 
     public ICommand Reset
     {
         get
         {
-            if (_reset == null) _reset = new ResetCommand(this);
+            if (_reset == null)
+            {
+                _reset = new RelayCommand(
+                    viewModel: this,
+                    execute: parameter => { R = 0; G = 0; B = 0; },
+                    canExecute: parameter => R != 0 || G != 0 || B != 0
+                );
+            }
+                
             return _reset;
         }
     }
+
+    public ICommand Save
+    {
+        get
+        {
+            if (_save == null)
+            {
+                _save = new RelayCommand(
+                    viewModel: this,
+                    execute: parameter => Settings.Save(_model)
+                );
+            }
+
+            return _save;
+        }
+    }
+
+
     #endregion Commands
 }
