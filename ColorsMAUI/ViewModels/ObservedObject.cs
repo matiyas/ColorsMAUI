@@ -2,6 +2,7 @@
 
 namespace ColorsMAUI.ViewModels;
 
+// Should implement INotifyPropertyChanged if have to be used in the BindingContext
 internal abstract class ObservedObject : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;

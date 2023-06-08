@@ -9,11 +9,7 @@ internal class Color
 
     public double R
     {
-        get
-        {
-            Trace.WriteLine(LimitToRange(_r));
-            return LimitToRange(_r);
-        }
+        get => LimitToRange(_r);
         set => _r = value;
     }
 
@@ -38,8 +34,5 @@ internal class Color
 
     public static Color Czarny { get => new(0, 0, 0); }
 
-    static double LimitToRange(double x)
-    {
-        return new[] { 0, x, 1 }.OrderBy(e => e).ToArray()[1];
-    }
+    static double LimitToRange(double x) => new[] { 0, x, 1 }.OrderBy(e => e).ToArray()[1];
 }

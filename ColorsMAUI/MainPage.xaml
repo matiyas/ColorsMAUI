@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pages/contentpage -->
+<!-- Represents single page view -->
+<!-- Can also be: -->
+<!--    FlayoutPage (side navigation) -->
+<!--    NavigationPage (page that provides stacked navigation) -->  
+<!--    TabbedPage (page with tabs like YouTube app) -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ColorsMAUI.ViewModels"
@@ -6,25 +12,44 @@
              x:Class="ColorsMAUI.MainPage"
              Disappearing="ContentPage_Disappearing">
 
+    <!-- Now you can bind R, G and B properties from ColorViewModel to UI controls -->
+    <!-- Class that have to be binded, should implement INotifyPropertyChanged interface -->
+    <!-- that contains PropertyChanged event -->
     <ContentPage.BindingContext>
         <vm:ColorViewModel/>
     </ContentPage.BindingContext>
 
+    <!-- ResourceDictionary -->
     <ContentPage.Resources>
+        <!-- Key: d2bs, Value: DoubleToByteString -->
+        <!-- Converters should implement IValueConverter interface, -->
+        <!-- it is to be used as single binding converter or -->
+        <!-- IMultiValueConverter if is to be used as multi binding converter -->
         <converters:DoubleToByteString x:Key="d2bs"/>
         <converters:RGBToBrushConverter x:Key="rgb2brush"/>
     </ContentPage.Resources>
 
+    <!-- AbsoluteLayout, BindableLayout, FlexLayout, Grid, HorizontalStackLayout, StackLayout, VerticalStackLayout -->
+    <!-- * means - use all available space -->
     <Grid RowSpacing="25"
           RowDefinitions="*,Auto,Auto,Auto"
           ColumnSpacing="25"
           ColumnDefinitions="*,Auto"
           Padding="30">
 
+        <!-- Rectangle shape -->
+        <!-- More shapes: https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/shapes/ -->
         <Rectangle x:Name="rectangle" 
                    Grid.Row="0" 
                    Grid.ColumnSpan="2">
             <Rectangle.Fill>
+                <!-- Takes an array of objects as an argument and returns single value -->
+                <!-- Must implement IMultiValueConverter or IMultiValueConverter<T> -->
+                <!-- OneWay (Default) - data flows from the source to the target -->
+                <!-- TwoWay - data flows from the source to the target and vice versa -->
+                <!-- OneTime - data flows only once from the source to the target property during the initial binding -->
+                <!-- OneWayToSource - reverse of OneWay. Data flows from the target property back to the source property. -->
+                <!-- OneWayToSource - reverse of OneWay. Data flows from the target property back to the source property. -->
                 <MultiBinding Mode="OneWay"
                               Converter="{StaticResource rgb2brush}">
                     <Binding Path="R"/>

@@ -1,10 +1,17 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<!-- Root element of the application -->    
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ColorsMAUI"
              x:Class="ColorsMAUI.App">
+    <!-- Gets a collection of application-scoped resources, such as styles, templates, and brushes. -->
+    <!-- Application.Resources property is of type ResourceDictionary and therefore takes an argument of type ResourceDictionary  -->
     <Application.Resources>
+        <!-- Define reusable resources for an application such as colors or styles -->
+        <!-- Resources can also be defined on window or element level -->
         <ResourceDictionary>
+            <!-- Create one ResourceDictionary from multiple merged dictionaries. -->
+            <!-- Resources that appear later will override existing resources. -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
