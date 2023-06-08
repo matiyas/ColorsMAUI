@@ -1,4 +1,6 @@
-﻿namespace ColorsMAUI;
+﻿using CommunityToolkit.Maui;
+
+namespace ColorsMAUI;
 
 public static class MauiProgram
 {
@@ -12,6 +14,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+		builder.UseMauiCommunityToolkit();
 
 		return builder.Build();
 	}

@@ -9,8 +9,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ColorsMAUI.ViewModels"
              xmlns:converters="clr-namespace:ColorsMAUI.Converters"
-             x:Class="ColorsMAUI.MainPage"
-             Disappearing="ContentPage_Disappearing">
+             xmlns:t="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ColorsMAUI.MainPage">
 
     <!-- Now you can bind R, G and B properties from ColorViewModel to UI controls -->
     <!-- Class that have to be binded, should implement INotifyPropertyChanged interface -->
@@ -29,10 +29,15 @@
         <converters:RGBToBrushConverter x:Key="rgb2brush"/>
     </ContentPage.Resources>
 
+    <ContentPage.Behaviors>
+        <t:EventToCommandBehavior EventName="Disappearing"
+                                  Command="{Binding Save}"/>
+    </ContentPage.Behaviors>
+
     <!-- AbsoluteLayout, BindableLayout, FlexLayout, Grid, HorizontalStackLayout, StackLayout, VerticalStackLayout -->
     <!-- * means - use all available space -->
     <Grid RowSpacing="25"
-          RowDefinitions="*,Auto,Auto,Auto"
+          RowDefinitions="*,Auto,Auto,Auto,Auto"
           ColumnSpacing="25"
           ColumnDefinitions="*,Auto"
           Padding="30">
@@ -101,6 +106,11 @@
                FontSize="35" 
                Text="{Binding B, Mode=OneWay, Converter={StaticResource d2bs}}"/>
 
+        <Button Text="Reset"
+                WidthRequest="200"
+                Grid.Row="4"
+                HorizontalOptions="Start"
+                Command="{Binding Reset}"/>
     </Grid>
 
 </ContentPage>
