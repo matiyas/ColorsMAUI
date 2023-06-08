@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 
 namespace ColorsMAUI.ViewModels;
@@ -15,15 +14,11 @@ internal class RelayCommand : ICommand
     (
         ColorViewModel viewModel,
         Action<object> execute,
-        Predicate<object> canExecute = null
-    )
+        Predicate<object> canExecute = null)
     {
         _viewModel = viewModel;
         _viewModel.PropertyChanged += ViewModel_PropertyChanged;
-
-        if (execute == null) throw new ArgumentNullException(nameof(execute));
-
-        _execute = execute;
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
         _canExecute = canExecute;
 
         _previousCanExecuteValue = CanExecute(null);

@@ -48,14 +48,11 @@ internal class ColorViewModel : ObservedObject
     {
         get
         {
-            if (_reset == null)
-            {
-                _reset = new RelayCommand(
+            _reset ??= 
+                new RelayCommand(
                     viewModel: this,
                     execute: parameter => { R = 0; G = 0; B = 0; },
-                    canExecute: parameter => R != 0 || G != 0 || B != 0
-                );
-            }
+                    canExecute: parameter => R != 0 || G != 0 || B != 0);
                 
             return _reset;
         }
@@ -65,13 +62,10 @@ internal class ColorViewModel : ObservedObject
     {
         get
         {
-            if (_save == null)
-            {
-                _save = new RelayCommand(
+            _save ??=
+                new RelayCommand(
                     viewModel: this,
-                    execute: parameter => Settings.Save(_model)
-                );
-            }
+                    execute: parameter => Settings.Save(_model));
 
             return _save;
         }
