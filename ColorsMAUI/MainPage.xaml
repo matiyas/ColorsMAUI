@@ -10,6 +10,7 @@
              xmlns:vm="clr-namespace:ColorsMAUI.ViewModels"
              xmlns:converters="clr-namespace:ColorsMAUI.Converters"
              xmlns:t="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:behaviors="clr-namespace:ColorsMAUI.Behaviors"
              x:Class="ColorsMAUI.MainPage">
 
     <!-- Now you can bind R, G and B properties from ColorViewModel to UI controls -->
@@ -30,8 +31,9 @@
     </ContentPage.Resources>
 
     <ContentPage.Behaviors>
-        <t:EventToCommandBehavior EventName="Disappearing"
-                                  Command="{Binding Save}"/>
+        <!--<t:EventToCommandBehavior EventName="Disappearing"
+                                  Command="{Binding Save}"/>-->
+        <behaviors:PageDisappearingBehavior Command="{ Binding Path=Save }"/>
     </ContentPage.Behaviors>
 
     <!-- AbsoluteLayout, BindableLayout, FlexLayout, Grid, HorizontalStackLayout, StackLayout, VerticalStackLayout -->
